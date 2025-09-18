@@ -28,8 +28,57 @@ type Header struct {
 	LocationCode int `json:"locationCode,omitempty"`
 }
 
+type ReadableHeader struct {
+	Identifier string `json:"identifier,omitempty"`
+
+	FinishTime *RaceTime `json:"finishTime,omitempty"`
+
+	Track     string `json:"track,omitempty"`
+	Vehicle   string `json:"vehicle,omitempty"`
+	Character string `json:"character,omitempty"`
+
+	Year  int `json:"year,omitempty"`
+	Month int `json:"month,omitempty"`
+	Day   int `json:"day,omitempty"`
+
+	Controller string `json:"controller,omitempty"`
+	Compressed bool   `json:"compressed,omitempty"`
+	GhostType  string `json:"ghostType,omitempty"`
+	DriftType  string `json:"driftType,omitempty"`
+
+	DataLength int `json:"dataLength,omitempty"`
+	LapCount   int `json:"lapCount,omitempty"`
+
+	Laps []*RaceTime `json:"laps,omitempty"`
+
+	Country string `json:"country,omitempty"`
+}
+
+func ConvertHeader(header Header) *ReadableHeader {
+	readableHeader := &ReadableHeader{
+		Identifier: header.Identifier,
+		FinishTime: header.FinishTime,
+		Track:      GetStringValue(header.TrackID, TrackIDs),
+		Vehicle:    GetStringValue(header.VehicleID, VehicleIDs),
+		Character:  GetStringValue(header.CharacterID, CharacterIDs),
+		Year:       header.Year,
+		Month:      header.Month,
+		Day:        header.Day,
+		Controller: GetStringValue(header.ControllerID, ControllerIDs),
+		Compressed: GetBoolValue(header.Compressed, Compressed),
+		GhostType:  GetStringValue(header.GhostType, GhostTypes),
+		DriftType:  GetStringValue(header.DriftType, DriftTypes),
+		DataLength: header.DataLength,
+		LapCount:   header.LapCount,
+		Laps:       header.Laps,
+		Country:    GetStringValue(header.CountryCode, CountryCodes),
+	}
+
+	return readableHeader
+}
+
 func ParseLaps(rkgHeader *Header, header []byte) {
-	for i := 0x11; i < 0x11+(rkgHeader.LapCount*3); i = i + 3 {
+	for i := 0x11; i+2 < 0x11+(rkgHeader.LapCount*3); i = i + 3 {
 		lap := &RaceTime{}
 
 		b1 := header[i]

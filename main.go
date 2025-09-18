@@ -1,10 +1,17 @@
 package main
 
 import (
-	r "main/rkg"
+	"os"
+
+	r "github.com/nwoik/Generate-Mii/rkg"
 )
 
 func main() {
-	r.ExportToJson("./2m09s039.rkg")
-	r.ExportMii("./2m09s039.rkg")
+	args := os.Args
+
+	rkgFile := args[1]
+
+	r.ExportToJsonRaw(rkgFile)
+	r.ExportToJsonReadable(rkgFile)
+	r.ExportMii(rkgFile)
 }

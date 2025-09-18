@@ -1,10 +1,65 @@
 package rkg
 
-func GetValue(value int, idMap map[int]string) string {
+func GetStringValue(value int, idMap map[int]string) string {
 	return idMap[value]
 }
 
-var ControllerID = map[int]string{
+func GetBoolValue(value int, idMap map[int]bool) bool {
+	return idMap[value]
+}
+
+var DriftTypes = map[int]string{
+	0: "MANUAL",
+	1: "AUTOMATIC",
+}
+
+var GhostTypes = map[int]string{
+	0x01: "Personal Best",
+	0x02: "World Record",
+	0x03: "Continental Record",
+	0x04: "Rival",
+	0x05: "Special",
+	0x06: "Ghost Race",
+	0x07: "Friend",
+	0x08: "Friend",
+	0x09: "Friend",
+	0x0A: "Friend",
+	0x0B: "Friend",
+	0x0C: "Friend",
+	0x0D: "Friend",
+	0x0E: "Friend",
+	0x0F: "Friend",
+	0x10: "Friend",
+	0x11: "Friend",
+	0x12: "Friend",
+	0x13: "Friend",
+	0x14: "Friend",
+	0x15: "Friend",
+	0x16: "Friend",
+	0x17: "Friend",
+	0x18: "Friend",
+	0x19: "Friend",
+	0x1A: "Friend",
+	0x1B: "Friend",
+	0x1C: "Friend",
+	0x1D: "Friend",
+	0x1E: "Friend",
+	0x1F: "Friend",
+	0x20: "Friend",
+	0x21: "Friend",
+	0x22: "Friend",
+	0x23: "Friend",
+	0x24: "Friend",
+	0x25: "Staff",
+	0x26: "Expert Staff",
+}
+
+var Compressed = map[int]bool{
+	0: false,
+	1: true,
+}
+
+var ControllerIDs = map[int]string{
 	0: "Wii Wheel",
 	1: "Wii Remote + Nunchuck",
 	2: "Classic Controller",
@@ -101,7 +156,7 @@ var VehicleIDs = map[int]string{
 	0x23: "Phantom",
 }
 
-var TrackID = map[int]string{
+var TrackIDs = map[int]string{
 	0x08: "Luigi Circuit",
 	0x01: "Moo Moo Meadows",
 	0x02: "Mushroom Gorge",

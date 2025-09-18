@@ -12,10 +12,26 @@ type RKG struct {
 	Data   []byte  `json:"data,omitempty"`
 }
 
-func ExportToJson(filepath string) {
+type ReadbleRKG struct {
+	Header *ReadableHeader `json:"header,omitempty"`
+	Mii    []byte          `json:"mii,omitempty"`
+	CRC    []byte          `json:"crc,omitempty"`
+	Data   []byte          `json:"data,omitempty"`
+}
+
+func ExportToJsonRaw(filepath string) {
 	rkg := ParseRKG(filepath)
+
 	jsonBytes, _ := json.MarshalIndent(rkg, "", "\t")
-	os.WriteFile("out.json", jsonBytes, os.ModeAppend)
+	os.WriteFile("rkg-raw-values.json", jsonBytes, os.ModeAppend)
+}
+
+func ExportToJsonReadable(filepath string) {
+	rkg := ParseRKG(filepath)
+	readable := ConvertRkg(rkg)
+
+	jsonBytes, _ := json.MarshalIndent(readable, "", "\t")
+	os.WriteFile("rkg-readable.json", jsonBytes, os.ModeAppend)
 }
 
 func ExportMii(filepath string) {
@@ -27,6 +43,17 @@ func ExportMii(filepath string) {
 	mii := file[0x3c:0x86]
 
 	os.WriteFile("mii.miigx", mii, os.ModeAppend)
+}
+
+func ConvertRkg(rkg *RKG) *ReadbleRKG {
+	readbleRkg := &ReadbleRKG{}
+	readbleRkg.Data = rkg.Data
+	readbleRkg.Mii = rkg.Mii
+	readbleRkg.CRC = rkg.CRC
+
+	readbleRkg.Header = ConvertHeader(*rkg.Header)
+
+	return readbleRkg
 }
 
 func ParseRKG(filepath string) *RKG {
