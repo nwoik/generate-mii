@@ -13,7 +13,7 @@ func main() {
 
 	rkgFile := args[1]
 
-	if !strings.Contains(rkgFile, ".rkg") {
+	if !strings.HasSuffix(rkgFile, ".rkg") {
 		println("This isn't an rkg file")
 		time.Sleep(3 * time.Second)
 		return
