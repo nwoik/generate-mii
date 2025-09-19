@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	r "github.com/nwoik/Generate-Mii/rkg"
+	r "github.com/nwoik/generate-mii/rkg"
 )
 
 func main() {
