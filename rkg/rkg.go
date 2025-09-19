@@ -2,7 +2,9 @@ package rkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
+	"strings"
 )
 
 type RKG struct {
@@ -22,16 +24,20 @@ type ReadbleRKG struct {
 func ExportToJsonRaw(filepath string) {
 	rkg := ParseRKG(filepath)
 
+	filename := strings.Split(filepath, ".")[0]
+
 	jsonBytes, _ := json.MarshalIndent(rkg, "", "\t")
-	os.WriteFile("rkg-raw-values.json", jsonBytes, os.ModeAppend)
+	WriteFile(fmt.Sprintf("%s-raw-values.json", filename), jsonBytes)
 }
 
 func ExportToJsonReadable(filepath string) {
 	rkg := ParseRKG(filepath)
 	readable := ConvertRkg(rkg)
 
+	filename := strings.Split(filepath, ".")[0]
+
 	jsonBytes, _ := json.MarshalIndent(readable, "", "\t")
-	os.WriteFile("rkg-readable.json", jsonBytes, os.ModeAppend)
+	WriteFile(fmt.Sprintf("%s-readable.json", filename), jsonBytes)
 }
 
 func ExportMii(filepath string) {
@@ -41,8 +47,14 @@ func ExportMii(filepath string) {
 	}
 
 	mii := file[0x3c:0x86]
+	filename := strings.Split(filepath, ".")[0]
 
-	os.WriteFile("mii.miigx", mii, os.ModeAppend)
+	WriteFile(fmt.Sprintf("%s.miigx", filename), mii)
+}
+
+func WriteFile(fileName string, bytes []byte) {
+	file, _ := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	file.Write(bytes)
 }
 
 func ConvertRkg(rkg *RKG) *ReadbleRKG {
