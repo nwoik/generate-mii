@@ -10,7 +10,7 @@ Simple drag and drop a time trial .rkg file onto the .exe file.
 
 Alternativaly, you can right click and select "open with" and choose Generate-Mii for the double click.
 
-<img width="493" height="84" alt="image" src="https://github.com/user-attachments/assets/8c3083f7-60ef-4d56-89f2-e8afbad2aca9" />
+<img width="613" height="262" alt="image" src="https://github.com/user-attachments/assets/83e4f63b-4167-40c4-b919-65fc6a2697a7" />
 
 <img width="634" height="132" alt="image" src="https://github.com/user-attachments/assets/6378e676-15d6-4bc2-aa53-2b63a8c083ef" />
 
