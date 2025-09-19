@@ -1,3 +1,3 @@
-module github.com/nwoik/Generate-Mii
+module github.com/nwoik/generate-mii
 
 go 1.25.1
