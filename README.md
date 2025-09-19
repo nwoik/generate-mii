@@ -14,10 +14,9 @@ Alternativaly, you can right click and select "open with" and choose Generate-Mi
 
 <img width="634" height="132" alt="image" src="https://github.com/user-attachments/assets/6378e676-15d6-4bc2-aa53-2b63a8c083ef" />
 
-
 It will generate the .miigx file along with 2 additional .json files
 
-<img width="614" height="122" alt="image" src="https://github.com/user-attachments/assets/fa656fb8-6188-4eec-85a0-f6326533257f" />
+<img width="627" height="178" alt="image" src="https://github.com/user-attachments/assets/de0a7056-aef2-4ad6-98b9-cbc1ce750bee" />
 
 You only need the .miigx file.
 
