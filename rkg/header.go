@@ -78,7 +78,7 @@ func ConvertHeader(header Header) *ReadableHeader {
 }
 
 func ParseLaps(rkgHeader *Header, header []byte) {
-	for i := 0x11; i+2 < 0x11+(rkgHeader.LapCount); i = i + 3 {
+	for i := 0x11; i+2 <= 0x11+(rkgHeader.LapCount*3); i = i + 3 {
 		lap := &RaceTime{}
 
 		b1 := header[i]
